@@ -27,6 +27,7 @@ page.onConsoleMessage = function(msg) {
             }catch(E){console.log(E.message)};
             phantom.exit();
         }
+        console.log(msg);
     }catch(E){}
 };
 
