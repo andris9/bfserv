@@ -13,7 +13,7 @@ function articleFetch(url, callback){
 	
 	url = url.replace(/"/g,"\\\"");
 
-	console.log("Cmd: "+"phantomjs "+phscript+" "+url);
+	console.log("Cmd: "+"phantomjs "+phscript+" "+url+" "+fpath);
 	exec("phantomjs "+phscript+" "+url+" "+fpath, function (err, stdout, stderr) {
             if(err){
                 fs.unlink(fpath);
