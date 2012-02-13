@@ -10,6 +10,7 @@
     ],
     "main" : "./index",
     "dependencies": {
-        "node-static": "*"
+        "node-static": "*",
+        "node-gearman":"*"
     }
 }

@@ -6,19 +6,19 @@
     
     bifocalScript = document.createElement('script');
     bifocalScript.type = 'text/javascript';
-    bifocalScript.src = 'http://tahvel.info/bifocal/js/bifocal.js?x='+ (Math.random());
+    bifocalScript.src = 'http://127.0.0.1:8080/bifocal/js/bifocal.js?x='+ (Math.random());
     document.getElementsByTagName('head')[0].appendChild(bifocalScript);
     
     bifocalCss = document.createElement('LINK');
     bifocalCss.rel = 'stylesheet';
-    bifocalCss.href = 'http://tahvel.info/bifocal/css/bifocal.css';
+    bifocalCss.href = 'http://127.0.0.1:8080/bifocal/css/bifocal.css';
     bifocalCss.type = 'text/css';
     bifocalCss.media = 'all';
     document.getElementsByTagName('head')[0].appendChild(bifocalCss);
     
     bifocalPrintCss = document.createElement('LINK');
     bifocalPrintCss.rel = 'stylesheet';
-    bifocalPrintCss.href = 'http://tahvel.info/bifocal/css/bifocal-print.css';
+    bifocalPrintCss.href = 'http://127.0.0.1:8080/bifocal/css/bifocal-print.css';
     bifocalPrintCss.media = 'print';
     bifocalPrintCss.type = 'text/css';
     document.getElementsByTagName('head')[0].appendChild(bifocalPrintCss);
