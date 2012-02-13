@@ -22,9 +22,9 @@ function articleFetch(url, callback){
                 var article = {};
                 try{
                 	article = JSON.parse(data.toString("utf-8").trim());
-                }catch(){}
+                }catch(E){}
                 
-                callback(null, (article.article || "").toString().trim());
+                callback(null, (article && article.article || "").toString().trim());
             });
         }););
 }
