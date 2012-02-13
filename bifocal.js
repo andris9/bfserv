@@ -45,6 +45,8 @@ page.onResourceReceived = function(r){
     //console.log(JSON.stringify(r));
 }
 
+var filters = [];
+
 console.log("Opening "+phantom.args[0]+" ...");
 page.open(phantom.args[0], function (status) {
     if (status !== "success") {
@@ -53,17 +55,10 @@ page.open(phantom.args[0], function (status) {
     } else {
         console.log("Page opened");
 
-        console.log("Evaluating script 1");
-        page.evaluate(function () {
-            // delfi
-            var list = document.querySelectorAll("font.articleBody");
-            if(list && list.length>1){
-                list[1].innerHTML = "<p>"+list[0].innerHTML+"</p>"+list[1].innerHTML
-            }
-            try{
-                list[0].parentNode.removeChild(list[0]);
-            }catch(e){}
-        });
+        for(var i=0, len=filters.length; i<len; i++){
+            console.log("Apllying filter #"+i);
+            page.evaluate(filters[i]);
+        }
         
         console.log("Injecting script 2");
         page.includeJs("http://127.0.0.1:8080/bifocal/inject.js", function() {
@@ -75,3 +70,30 @@ page.open(phantom.args[0], function (status) {
     }
 
 });
+
+// delfi
+filters.push(function(){
+    var list = document.querySelectorAll("font.articleBody");
+    if(list && list.length>1){
+        list[1].innerHTML = "<p>"+list[0].innerHTML+"</p>"+list[1].innerHTML
+    }
+    try{
+        list[0].parentNode.removeChild(list[0]);
+    }catch(e){}
+});
+
+// err
+filters.push(function(){
+    var block = document.querySelector(".space .biggerfont"),
+        fs = block && block.firstChild;
+
+    if(fs && fs.nodeName == "#text"){
+        if((fs.nodeValue || "").toString().trim().match(/^[0-9\. :]+$/)){
+            try{
+                fs.parentNode.removeChild(fs);
+            }catch(E){}
+        }
+    }
+
+});
+
