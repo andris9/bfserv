@@ -1,30 +1,33 @@
 (function() {
+    console.log("1");
     readConvertLinksToFootnotes = false;
     readStyle = 'style-newspaper';
     readSize = 'size-medium';
     readMargin = 'margin-medium';
-    
+    console.log("2");
     bifocalScript = document.createElement('script');
     bifocalScript.type = 'text/javascript';
     bifocalScript.src = 'http://127.0.0.1:8080/bifocal/js/bifocal.js?x='+ (Math.random());
     document.getElementsByTagName('head')[0].appendChild(bifocalScript);
-    
+    console.log("3");
     bifocalCss = document.createElement('LINK');
     bifocalCss.rel = 'stylesheet';
     bifocalCss.href = 'http://127.0.0.1:8080/bifocal/css/bifocal.css';
     bifocalCss.type = 'text/css';
     bifocalCss.media = 'all';
     document.getElementsByTagName('head')[0].appendChild(bifocalCss);
-    
+    console.log("4");
     bifocalPrintCss = document.createElement('LINK');
     bifocalPrintCss.rel = 'stylesheet';
     bifocalPrintCss.href = 'http://127.0.0.1:8080/bifocal/css/bifocal-print.css';
     bifocalPrintCss.media = 'print';
     bifocalPrintCss.type = 'text/css';
     document.getElementsByTagName('head')[0].appendChild(bifocalPrintCss);
+    console.log("5");
 })();
 
 function __PHANTOM_RESPONSE(){
+    console.log("!!!!!");
     var article = document.querySelector('#bifocal-content .page'),
         title =  document.querySelector('#readInner h1'),
         warning =  document.querySelector('#bifocal-warning'),
