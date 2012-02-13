@@ -73,6 +73,16 @@ function __PHANTOM_RESPONSE(){
                             if((elements[i].href || "").toString().trim().match(/^(javascript|about)\s*\:/)){
                                 elements[i].href = "#";
                             }
+                        }else if(elements[i].tagName == "IMG"){
+                            if(attr.toLowerCase() == "alt"){
+                                // keep
+                            }else if(attr.toLowerCase() == "src"){
+                                if((elements[i].src || "").toString().trim().match(/^(javascript|about)\s*\:/)){
+                                    elements[i].removeAttribute(attr);
+                                });
+                            }else{
+                                elements[i].removeAttribute(attr);
+                            }
                         }else{
                             elements[i].removeAttribute(attr);
                         }
