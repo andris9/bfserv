@@ -2,6 +2,8 @@ var page = new WebPage();
 
 var fs = require("fs");
 
+var log = [];
+
 if (phantom.args.length === 0) {
     phantom.exit(1);
 }
@@ -17,9 +19,9 @@ page.onConsoleMessage = function(msg) {
     try{
         var data = JSON.parse(msg);
         if(data.bifocal){
-            console.log("Saving output to: " + (phantom.args[1] || "out.txt"));
-            fs.write(phantom.args[1] || "out.txt", (msg || "").toString(), "w");
-            console.log("SUCCESS");
+            Log("Saving output to: " + (phantom.args[1] || "out.txt"));
+            data.log = Log;
+            fs.write(phantom.args[1] || "out.txt", JSON.stringify(data), "w");
             phantom.exit();
         }
     }catch(E){}
@@ -47,20 +49,20 @@ page.onResourceReceived = function(r){
 
 var filters = [];
 
-console.log("Opening "+phantom.args[0]+" ...");
+Log("Opening "+phantom.args[0]+" ...");
 page.open(phantom.args[0], function (status) {
     if (status !== "success") {
-        console.log("ERROR: Network");
+        Log("ERROR: Network");
         phantom.exit(2);
     } else {
-        console.log("Page opened");
+        Log("Page opened");
 
         for(var i=0, len=filters.length; i<len; i++){
-            console.log("Apllying filter #"+i);
+            Log("Apllying filter #"+(i+1));
             page.evaluate(filters[i]);
         }
         
-        console.log("Injecting script 2");
+        Log("Injecting main script");
         page.includeJs("http://127.0.0.1:8080/bifocal/inject.js", function() {
             window.setTimeout(function () {
                 phantom.exit(3);
@@ -97,3 +99,7 @@ filters.push(function(){
 
 });
 
+function Log(msg){
+    log.push(msg);
+    console.log(msg);
+}
