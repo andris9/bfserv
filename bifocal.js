@@ -22,7 +22,7 @@ page.onConsoleMessage = function(msg) {
             Log("Saving output to: " + (phantom.args[1] || "out.txt"));
             data.log = log;
             try{
-                fs.write(phantom.args[1] || "out.txt", JSON.stringify(data), "w");
+                fs.write(phantom.args[1] || "out.txt", encodeURIComponent(JSON.stringify(data)), "w");
                 console.log("Success");
             }catch(E){console.log(E.message)};
             phantom.exit();

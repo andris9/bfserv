@@ -23,7 +23,7 @@ function articleFetch(url, callback){
                 fs.unlink(fpath);
                 var article = {};
                 try{
-                	article = JSON.parse(data.toString("utf-8").trim());
+                	article = JSON.parse(decodeURIComponent(data.toString("utf-8").trim()));
                 }catch(E){}
                 
                 callback(null, (article && article.article || "").toString().trim());
