@@ -12,7 +12,7 @@ if (phantom.args.length === 0) {
 
 page.settings.userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:8.0.1) Gecko/20100101 Firefox/8.0.1';
 //page.settings.javascriptEnabled = false;
-//page.settings.loadImages = false; 
+page.settings.loadImages = false; 
 //page.settings.loadPlugins = false;
 
 page.onConsoleMessage = function(msg) {
