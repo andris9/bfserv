@@ -20,7 +20,7 @@ page.onConsoleMessage = function(msg) {
         var data = JSON.parse(msg);
         if(data.bifocal){
             Log("Saving output to: " + (phantom.args[1] || "out.txt"));
-            data.log = Log;
+            data.log = log;
             fs.write(phantom.args[1] || "out.txt", JSON.stringify(data), "w");
             phantom.exit();
         }
