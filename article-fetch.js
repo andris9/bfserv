@@ -1,5 +1,6 @@
 var pathlib = require("path"),
-	exec = require("child_process").exec;
+	exec = require("child_process").exec,
+	fs = require("fs");
 
 module.exports = articleFetch;
 
