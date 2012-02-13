@@ -61,7 +61,7 @@ page.open(phantom.args[0], function (status) {
         Log("Page opened");
 
         for(var i=0, len=filters.length; i<len; i++){
-            Log("Apllying filter #"+(i+1));
+            Log("Aplying filter #"+(i+1));
             page.evaluate(filters[i]);
         }
         
