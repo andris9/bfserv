@@ -1,0 +1,15 @@
+{
+    "name": "bfserv",
+    "version": "0.1.0",
+    "author" : "Andris Reinman",
+    "maintainers":[
+        {
+            "name":"andris",
+            "email":"andris@node.ee"
+        }
+    ],
+    "main" : "./index",
+    "dependencies": {
+        "nodeunit": "*"
+    }
+}
