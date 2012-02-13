@@ -18,7 +18,7 @@ function articleFetch(url, callback){
                 return callback(err);
             }
             fs.readFile(fpath, function(err, data){
-                fs.unlink(fpath;
+                fs.unlink(fpath);
                 var article = {};
                 try{
                 	article = JSON.parse(data.toString("utf-8").trim());
