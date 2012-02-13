@@ -15,7 +15,7 @@ require('http').createServer(function (request, response) {
 var counter = 0;
 
 // GEARMAN WORKER
-var gearman = new Gearman("pangalink.net");
+var gearman = new Gearman("pangalink.net", false, 1);
 function startWorker(){
 	gearman.registerWorker("article", function(payload, worker){
 		console.log("Received JOB #"+(++counter));
