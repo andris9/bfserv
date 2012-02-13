@@ -21,7 +21,10 @@ page.onConsoleMessage = function(msg) {
         if(data.bifocal){
             Log("Saving output to: " + (phantom.args[1] || "out.txt"));
             data.log = log;
-            fs.write(phantom.args[1] || "out.txt", JSON.stringify(data), "w");
+            try{
+                fs.write(phantom.args[1] || "out.txt", JSON.stringify(data), "w");
+                console.log("Success");
+            }catch(E){console.log(E.message)};
             phantom.exit();
         }
     }catch(E){}
