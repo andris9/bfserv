@@ -26,7 +26,7 @@ function articleFetch(url, callback){
                 
                 callback(null, (article && article.article || "").toString().trim());
             });
-        }););
+        });
 }
 
 function genFName(){
