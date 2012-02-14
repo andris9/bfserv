@@ -94,9 +94,11 @@ filters.push(function(){
         tykid, text;
     
     if(sissejuhatus){
+        
         text = sissejuhatus.innerHTML;
+        
         try{
-            sissejuhtus.parentNode.removeChild(sissejuhatus);
+            sissejuhatus.parentNode.removeChild(sissejuhatus);
         }catch(e){
             return;
         }
