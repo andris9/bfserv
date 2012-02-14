@@ -186,6 +186,19 @@ filters.push(function(){
 
 });
 
+
+// trimmer
+filters.push(function(){
+    var block = document.querySelectorAll("div, p, ul, li");
+
+    if(block){
+        for(var i=0, len = block.length; i<len; i++){
+            block[i].innerHTML = (block[i].innerHTML || "").trim();
+        }
+    }
+
+});
+
 function Log(msg){
     log.push(msg);
     console.log(msg);
