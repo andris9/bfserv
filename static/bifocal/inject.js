@@ -1,5 +1,7 @@
 (function() {
     try{
+        console.log("Main script");
+        
         readConvertLinksToFootnotes = false;
         readStyle = 'style-newspaper';
         readSize = 'size-medium';

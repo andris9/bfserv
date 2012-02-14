@@ -80,7 +80,8 @@ page.open(phantom.args[0], function (status) {
 // delfi
 filters.push(function(){
     try{
-     
+        console.log("Filter 1");
+        
         var list = document.querySelectorAll("font.articleBody");
         if(list && list.length>1){
             list[1].innerHTML = "<p><strong>"+list[0].innerHTML+"</strong></p>"+list[1].innerHTML
@@ -141,6 +142,7 @@ filters.push(function(){
 // postimees
 filters.push(function(){
     try{
+       console.log("Filter 2");
      
         var sissejuhatus = document.querySelector("#artikli_sissejuhatus"),
             tykid, text;
@@ -171,7 +173,8 @@ filters.push(function(){
 // err
 filters.push(function(){
     try{
-     
+        console.log("Filter 3");
+        
         var block = document.querySelector(".space .biggerfont"),
             fs = block && block.firstChild;
     
@@ -189,7 +192,8 @@ filters.push(function(){
 // ap3
 filters.push(function(){
     try{
-     
+        console.log("Filter 4");
+        
         var block = document.querySelector(".publicationpublished");
     
         if(block){
@@ -204,6 +208,7 @@ filters.push(function(){
 // õhtuleht
 filters.push(function(){
     try{
+        console.log("Filter 5");
      
         var block;
         
@@ -233,6 +238,7 @@ filters.push(function(){
 // memokraat
 filters.push(function(){
     try{
+        console.log("Filter 6");
      
         var block = document.querySelector("#content #content-main .post h5");
     
@@ -248,7 +254,8 @@ filters.push(function(){
 // remove media
 filters.push(function(){
     try{
-     
+        console.log("Filter 7");
+        
         var block = document.querySelectorAll("video, embed, audio, object");
     
         for(var i = block.length-1; i>=0; i--){
