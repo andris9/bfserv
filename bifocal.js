@@ -186,19 +186,6 @@ filters.push(function(){
 
 });
 
-
-// trimmer
-filters.push(function(){
-    var block = document.querySelectorAll("div, p, ul, li");
-try{
-    if(block){
-        for(var i=0, len = block.length; i<len; i++){
-            block[i].innerHTML = (block[i].innerHTML || "").trim();
-        }
-    }
-}catch(E){console.log(E.message)}
-});
-
 function Log(msg){
     log.push(msg);
     console.log(msg);

@@ -114,11 +114,9 @@ function __PHANTOM_RESPONSE(){
             }
         }
         
-        // remove hidden elements
-        for(var i = removeList.length - 1; i>=0; i--){
-            try{
-                removeList[i].parentNode.removeChild(removeList[i]);
-            }catch(E){}
+        elements = element.querySelectorAll("div, p, ul, li, h1, h2, h3, h4, h5");
+        for(var i=0, len = elements.length; i<len; i++){
+            elements[i].innerHTML = (elements[i].innerHTML || "").trim();
         }
     }
 }
