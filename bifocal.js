@@ -283,10 +283,26 @@ filters.push(function(){
     }catch(E){console.log("ERR7: "+E.message)}
 });
 
-// remove media
+// õpetajate leht
 filters.push(function(){
     try{
         console.log("Filter 8");
+     
+        var block = document.querySelector(".full_artikel .h1_link_a");
+    
+        if(block){
+            try{
+                block.parentNode.removeChild(block);
+            }catch(E){}
+        }
+    
+    }catch(E){console.log("ERR8: "+E.message)}
+});
+
+// remove media
+filters.push(function(){
+    try{
+        console.log("Filter 9");
         
         var block = document.querySelectorAll("video, embed, audio, object");
     
@@ -295,7 +311,7 @@ filters.push(function(){
                 block[i].parentNode.removeChild(block[i]);
             }catch(E){}
         }
-    }catch(E){console.log("ERR8: "+E.message)}
+    }catch(E){console.log("ERR9: "+E.message)}
 });
 
 function Log(msg){
