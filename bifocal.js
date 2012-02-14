@@ -92,7 +92,10 @@ filters.push(function(){
 filters.push(function(){
     var sissejuhatus = document.querySelector("#artikli_sissejuhatus"),
         tykid = document.querySelector("#artikkel_tykid");
-        
+    
+    console.log(sissejuhatus)
+    console.log(tykid)
+    
     if(sissejuhatus && tykid){
         tykid.innerHTML = sissejuhatus.innerHTML + tykid.innerHTML;
         try{
