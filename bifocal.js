@@ -257,10 +257,36 @@ filters.push(function(){
     }catch(E){console.log("ERR6: "+E.message)}
 });
 
+// kes-kus
+filters.push(function(){
+    try{
+       console.log("Filter 7");
+     
+        var sissejuhatus = document.querySelector("td.koht h5"),
+            tykid, text;
+        
+        if(sissejuhatus){
+            
+            text = "<p>"+(sissejuhatus.innerHTML || "")+"</p>";
+            
+            try{
+                sissejuhatus.parentNode.removeChild(sissejuhatus);
+            }catch(e){
+                return;
+            }
+            
+            if((tykid =  document.querySelector("td.tekst"))){
+                tykid.innerHTML = text + tykid.innerHTML;
+            }
+        }
+    
+    }catch(E){console.log("ERR7: "+E.message)}
+});
+
 // remove media
 filters.push(function(){
     try{
-        console.log("Filter 7");
+        console.log("Filter 8");
         
         var block = document.querySelectorAll("video, embed, audio, object");
     
@@ -269,7 +295,7 @@ filters.push(function(){
                 block[i].parentNode.removeChild(block[i]);
             }catch(E){}
         }
-    }catch(E){console.log("ERR7: "+E.message)}
+    }catch(E){console.log("ERR8: "+E.message)}
 });
 
 function Log(msg){
