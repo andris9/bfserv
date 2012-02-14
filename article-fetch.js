@@ -1,5 +1,5 @@
 var pathlib = require("path"),
-	exec = require("child_process").exec,
+	spawn = require("child_process").spawn,
 	fs = require("fs");
 
 module.exports = articleFetch;
@@ -11,24 +11,35 @@ function articleFetch(url, callback){
 	var fname = genFName(),
 		fpath = pathlib.join(tempDir, fname);
 	
-	url = url.replace(/"/g,"\\\"");
-
 	console.log("Cmd: "+"phantomjs "+phscript+" "+url+" "+fpath);
-	exec("phantomjs "+phscript+" "+url+" "+fpath, function (err, stdout, stderr) {
-            if(err){
-                fs.unlink(fpath);
-                return callback(err);
-            }
-            fs.readFile(fpath, function(err, data){
-                fs.unlink(fpath);
-                var article = {};
-                try{
-                	article = JSON.parse(decodeURIComponent(data.toString("utf-8").trim()));
-                }catch(E){}
-                
-                callback(null, (article && article.article || "").toString().trim());
-            });
+	
+	var cmd = spawn(phantomjs, [phscript, url, fpath]);
+	
+	cmd.stdout.on('data', function (data) {
+        console.log('stdout: ' + data);
+    });
+    
+    cmd.stderr.on('data', function (data) {
+        console.log('stderr: ' + data);
+    });
+    
+    cmd.on('exit', function (code) {
+        console.log("Child exited with "+code);
+        if(code){
+            fs.unlink(fpath);
+            return callback(new Error("Child exited with "+code));
+        }
+        fs.readFile(fpath, function(err, data){
+            fs.unlink(fpath);
+            var article = {};
+            try{
+                article = JSON.parse(decodeURIComponent(data.toString("utf-8").trim()));
+            }catch(E){}
+            
+            callback(null, (article && article.article || "").toString().trim());
         });
+    });
+
 }
 
 function genFName(){
