@@ -81,7 +81,7 @@ page.open(phantom.args[0], function (status) {
 filters.push(function(){
     var list = document.querySelectorAll("font.articleBody");
     if(list && list.length>1){
-        list[1].innerHTML = "<p>"+list[0].innerHTML+"</p>"+list[1].innerHTML
+        list[1].innerHTML = "<p><strong>"+list[0].innerHTML+"</strong></p>"+list[1].innerHTML
     }
     try{
         list[0].parentNode.removeChild(list[0]);
