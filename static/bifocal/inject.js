@@ -79,7 +79,7 @@ function __PHANTOM_RESPONSE(){
                             }else if(attr.toLowerCase() == "src"){
                                 if((elements[i].src || "").toString().trim().match(/^(javascript|about)\s*\:/)){
                                     elements[i].removeAttribute(attr);
-                                });
+                                };
                             }else{
                                 elements[i].removeAttribute(attr);
                             }
