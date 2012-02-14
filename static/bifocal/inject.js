@@ -74,7 +74,7 @@ function __PHANTOM_RESPONSE(){
         }
         
         // sanitize nodes by removing all attributes except for href
-        var elements = element.getElementsByTagName("*"),
+        var elements = element.querySelectorAll("*"),
             attr, href,
             removeList = [];
             
@@ -82,10 +82,11 @@ function __PHANTOM_RESPONSE(){
             
             // remove hidden elements from the DOM
             console.log(element.tagName+", "+window.getComputedStyle(element).getPropertyValue("display"))
-            if(window.getComputedStyle(element).getPropertyValue("display") == "hidden"){
+            
+            if(window.getComputedStyle(element).getPropertyValue("display") == "none"){
                 console.log("Hidden found");
                 // add only top level hidden elements, not the children
-                if(window.getComputedStyle(element.parentNode).getPropertyValue("display") != "hidden"){
+                if(window.getComputedStyle(element.parentNode).getPropertyValue("display") != "none"){
                     console.log("No hidden parent");
                     removeList.push(element);
                 }else{
