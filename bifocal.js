@@ -147,6 +147,18 @@ filters.push(function(){
     }
 });
 
+// memokraat
+filters.push(function(){
+    var block = document.querySelector("#content #content-main .post h5");
+
+    if(block){
+        try{
+            block.parentNode.removeChild(block);
+        }catch(E){}
+    }
+
+});
+
 function Log(msg){
     log.push(msg);
     console.log(msg);
