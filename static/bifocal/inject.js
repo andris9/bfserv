@@ -1,5 +1,5 @@
 console.log("Injected Main");
-try{
+
 (function() {
     try{
         console.log("Run Main script");
@@ -89,12 +89,12 @@ function __PHANTOM_RESPONSE(){
         for(var i=0, len = elements.length; i<len; i++){
             
             for(j = elements[i].attributes.length-1; j>=0; j--){
-                attr = (elements[i].attributes.item(j).nodeName || "").toString();
+                attr = (elements[i].attributes.item(j).nodeName || "").toString();
                 if(attr){
                     
                     // lingid
                     if(elements[i].tagName == "A" && attr.toLowerCase() == "href"){
-                        href = (elements[i].href || "").toString().trim();
+                        href = (elements[i].href || "").toString().trim();
                         if(href.match(/^(javascript|about)\s*\:/)){
                             elements[i].href = "#";
                         }else if(href.match(/^https?\:\/\/[a-z\.\-]+\/teemalehed\//i)){
@@ -107,7 +107,7 @@ function __PHANTOM_RESPONSE(){
                         if(attr.toLowerCase() == "alt"){
                             // keep
                         }else if(attr.toLowerCase() == "src"){
-                            if((elements[i].src || "").toString().trim().match(/^(javascript|about)\s*\:/)){
+                            if((elements[i].src || "").toString().trim().match(/^(javascript|about)\s*\:/)){
                                 elements[i].removeAttribute(attr);
                             };
                         }else{
@@ -122,7 +122,4 @@ function __PHANTOM_RESPONSE(){
             }
         }
     }
-}
-}catch(E){
-    console.log("IERR: "+E.message)
 }
