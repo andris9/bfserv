@@ -88,6 +88,19 @@ filters.push(function(){
     }catch(e){}
 });
 
+// postimees
+filters.push(function(){
+    var sissejuhatus = document.querySelector("#artikli_sissejuhatus"),
+        tykid = document.querySelector("#artikkel_tykid");
+        
+    if(sissejuhatus && tykid){
+        tykid.innerHTML = sissejuhatus.innerHTML + tykid.innerHTML;
+        try{
+            sissejuhatus.parentNode.removeChild(sissejuhatus);
+        }catch(e){}
+    }
+});
+
 // err
 filters.push(function(){
     var block = document.querySelector(".space .biggerfont"),
