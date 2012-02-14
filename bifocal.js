@@ -80,6 +80,7 @@ page.open(phantom.args[0], function (status) {
 // delfi
 filters.push(function(){
     var list = document.querySelectorAll("font.articleBody, span.articleBody");
+    console.log(list)
     if(list && list.length>1){
         list[1].innerHTML = "<p><strong>"+list[0].innerHTML+"</strong></p>"+list[1].innerHTML
     }
@@ -89,6 +90,7 @@ filters.push(function(){
     
     var block = document.querySelector(".articlebody .paidcontent");
 
+    console.log(block);
     if(block){
         try{
             block.parentNode.removeChild(block);
