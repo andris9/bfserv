@@ -2,6 +2,8 @@ console.log("Injected Main");
 
 (function() {
     try{
+        console.log("FINAL URL: "+window.location.href);
+        
         console.log("Run Main script");
         
         readConvertLinksToFootnotes = false;
