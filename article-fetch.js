@@ -36,7 +36,7 @@ function articleFetch(url, callback){
                 article = JSON.parse(decodeURIComponent(data.toString("utf-8").trim()));
             }catch(E){}
             
-            callback(null, (article && article.article || "").toString().trim());
+            callback(null, sanitizeHTML((article && article.article || "").toString().trim()));
         });
     });
 
@@ -47,3 +47,15 @@ function genFName(){
 }
 genFName.seed = "S"+Date.now();
 genFName.counter = 0;
+
+
+function sanitizeHTML(html){
+    
+    html = html.trim().
+        replace(/\r?\n|\r/g, "\u0000").
+        replace(/<(div|p|ul|li|h1|h2|h3|h4|h5)>[\s\u0000]*(<br>[\s\u0000]*)*/g, "<$1>").
+        replace(/(?:[\s\u0000]*<br>)*[\s\u0000]*<\/(div|p|ul|li|h1|h2|h3|h4|h5)>/g, "<$1>")
+        replace(/\u0000/g, "\n");
+    
+    return html;
+}
