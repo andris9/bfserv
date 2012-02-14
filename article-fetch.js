@@ -16,11 +16,11 @@ function articleFetch(url, callback){
 	var cmd = spawn("phantomjs", [phscript, url, fpath]);
 	
 	cmd.stdout.on('data', function (data) {
-        console.log('stdout: ' + data);
+        console.log('stdout: ' + (data || "").toString().trim());
     });
     
     cmd.stderr.on('data', function (data) {
-        console.log('stderr: ' + data);
+        console.log('stderr: ' + (data || "").toString().trim());
     });
     
     cmd.on('exit', function (code) {
