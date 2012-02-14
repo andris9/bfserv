@@ -100,6 +100,8 @@ function __PHANTOM_RESPONSE(){
                         }else if(href.match(/^https?\:\/\/[a-z\.\-]+\/teemalehed\//i)){
                             // delfi teemalehed
                             elements[i].removeAttribute(attr);
+                        }else{
+                            elements[i].href = href;
                         }
                     
                     // pildid
@@ -107,9 +109,12 @@ function __PHANTOM_RESPONSE(){
                         if(attr.toLowerCase() == "alt"){
                             // keep
                         }else if(attr.toLowerCase() == "src"){
-                            if((elements[i].src || "").toString().trim().match(/^(javascript|about)\s*\:/)){
+                            var src = (elements[i].src || "").toString().trim();
+                            if(src.match(/^(javascript|about)\s*\:/)){
                                 elements[i].removeAttribute(attr);
-                            };
+                            }else{
+                                elements[i].src = src;
+                            }
                         }else{
                             elements[i].removeAttribute(attr);
                         }
@@ -121,5 +126,7 @@ function __PHANTOM_RESPONSE(){
                 }
             }
         }
+        
+        
     }
 }
