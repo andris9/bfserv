@@ -1,6 +1,8 @@
+console.log("Injected Main");
+
 (function() {
     try{
-        console.log("Main script");
+        console.log("Run Main script");
         
         readConvertLinksToFootnotes = false;
         readStyle = 'style-newspaper';
