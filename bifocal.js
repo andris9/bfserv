@@ -86,6 +86,14 @@ filters.push(function(){
     try{
         list[0].parentNode.removeChild(list[0]);
     }catch(e){}
+    
+    var block = document.querySelector(".articlebody .paidcontent");
+
+    if(block){
+        try{
+            block.parentNode.removeChild(block);
+        }catch(E){}
+    }
 });
 
 // postimees
