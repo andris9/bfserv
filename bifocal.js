@@ -97,9 +97,13 @@ filters.push(function(){
     console.log(tykid)
     
     if(sissejuhatus && tykid){
+        console.log(sissejuhatus.innerHTML)
+        console.log(tykid.innerHTML)
+        
         tykid.innerHTML = sissejuhatus.innerHTML + tykid.innerHTML;
+        
         try{
-            sissejuhatus.parentNode.removeChild(sissejuhatus);
+            sissejuhtus.parentNode.removeChild(sissejuhatus);
         }catch(e){}
     }
 });
