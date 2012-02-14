@@ -119,33 +119,31 @@ filters.push(function(){
 filters.push(function(){
     var block;
     
-    block = document.querySelector("#article-info.cfx");
-    if(block){
+    if((block = document.querySelector("#article-info.cfx"))){
         try{
             block.parentNode.removeChild(block);
         }catch(E){}
     }
 
 
-    block = document.querySelector(".gallery-action-bar");
-    if(block){
+    if((block = document.querySelector("#article-content .gallery-action-bar"))){
         try{
             block.parentNode.removeChild(block);
         }catch(E){}
     }
     
-    block = document.querySelector("#gallery-slideshow-container");
-    if(block){
+    if((block = document.querySelector("#article-content #gallery-slideshow-container"))){
         try{
             block.parentNode.removeChild(block);
         }catch(E){}
     }
     
-    block = document.querySelector(".banner.cfx");
-    if(block){
-        try{
-            block.parentNode.removeChild(block);
-        }catch(E){}
+    if((block = document.querySelectorAll("#article-content .banner"))){
+        for(var i=block.length-1; i>=0; i--){
+            try{
+                block[i].parentNode.removeChild(block[i]);
+            }catch(E){}
+        }
     }
 });
 
