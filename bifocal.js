@@ -253,6 +253,7 @@ filters.push(function(){
 
 // remove media
 filters.push(function(){
+    /*
     try{
         console.log("Filter 7");
         
@@ -264,6 +265,7 @@ filters.push(function(){
             }catch(E){}
         }
     }catch(E){console.log("ERR7: "+E.message)}
+    * */
 });
 
 function Log(msg){
