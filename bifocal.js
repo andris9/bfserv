@@ -91,7 +91,7 @@ filters.push(function(){
 // postimees
 filters.push(function(){
     var sissejuhatus = document.querySelector("#artikli_sissejuhatus"),
-        tykid = document.querySelector("#artikkel_tykid");
+        tykid = document.querySelector(".artikkel_tykid");
     
     console.log(sissejuhatus)
     console.log(tykid)
