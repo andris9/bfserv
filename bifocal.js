@@ -91,21 +91,21 @@ filters.push(function(){
 // postimees
 filters.push(function(){
     var sissejuhatus = document.querySelector("#artikli_sissejuhatus"),
-        tykid = document.querySelector(".artikkel_tykid");
+        tykid, text;
     
-    console.log(sissejuhatus)
-    console.log(tykid)
-    
-    if(sissejuhatus && tykid){
-        console.log(sissejuhatus.innerHTML)
-        console.log(tykid.innerHTML)
-        
-        tykid.innerHTML = sissejuhatus.innerHTML + tykid.innerHTML;
-        
+    if(sissejuhatus){
+        text = sissejuhatus.innerHTML;
         try{
             sissejuhtus.parentNode.removeChild(sissejuhatus);
-        }catch(e){}
+        }catch(e){
+            return;
+        }
+        
+        if((tykid =  document.querySelector(".artikkel_tykid"))){
+            tykid.innerHTML = text + tykid.innerHTML;
+        }
     }
+    
 });
 
 // err
