@@ -53,7 +53,7 @@ function sanitizeHTML(html){
     html = html.trim().
         replace(/\r?\n|\r/g, "\u0000").
         replace(/<(div|p|ul|li|h1|h2|h3|h4|h5)>[\s\u0000]*(<br>[\s\u0000]*)*/g, "<$1>").
-        replace(/(?:[\s\u0000]*<br>)*[\s\u0000]*<\/(div|p|ul|li|h1|h2|h3|h4|h5)>/g, "<$1>").
+        replace(/(?:[\s\u0000]*<br>)*[\s\u0000]*<\/(div|p|ul|li|h1|h2|h3|h4|h5)>/g, "</$1>").
         replace(/<\!\-\-.*\-\->/g, ""). //comments
         replace(/<p>[\s\u0000]*(?=<p>)/g, ""). // empty P
         replace(/<([A-Za-z][^> ]*)[^>]*>[\s\u0000]*<\/([A-Za-z][^> ]*)[^>]*>/g,function(original, startTag, endTag){
