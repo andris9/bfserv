@@ -59,6 +59,8 @@ page.open(phantom.args[0], function (status) {
         Log("ERROR: Network");
         phantom.exit(2);
     } else {
+        console.log("FINAL URL: "+location.href);
+        
         Log("Page opened");
 
         for(var i=0, len=filters.length; i<len; i++){
