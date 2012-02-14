@@ -1,5 +1,5 @@
 console.log("Injected Main");
-
+try{
 (function() {
     try{
         console.log("Run Main script");
@@ -122,4 +122,7 @@ function __PHANTOM_RESPONSE(){
             }
         }
     }
+}
+}catch(E){
+    console.log("IERR: "+E.message)
 }
