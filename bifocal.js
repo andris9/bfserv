@@ -95,7 +95,12 @@ filters.push(function(){
     
     if(sissejuhatus){
         
-        text = sissejuhatus.innerHTML;
+        var p = sissejuhatus.querySelectorAll("p");
+        for(var i=0, len = p.length; i<len; i++){
+            p[i].innerHTML = "<strong>"+p[i].innerHTML+"</strong>";
+        }
+        
+        text = sissejuhatus.innerHTML || "";
         
         try{
             sissejuhatus.parentNode.removeChild(sissejuhatus);
