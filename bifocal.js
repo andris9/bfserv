@@ -66,6 +66,11 @@ page.open(phantom.args[0], function (status) {
             page.evaluate(filters[i]);
         }
         
+        Log("Injecting test script");
+        page.includeJs("http://127.0.0.1:8080/bifocal/test.js", function() {
+            
+        });
+        
         Log("Injecting main script");
         page.includeJs("http://127.0.0.1:8080/bifocal/inject.js", function() {
             window.setTimeout(function () {
