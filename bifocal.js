@@ -79,8 +79,7 @@ page.open(phantom.args[0], function (status) {
 
 // delfi
 filters.push(function(){
-    var list = document.querySelectorAll("font.articleBody, span.articleBody");
-    console.log(list)
+    var list = document.querySelectorAll("font.articleBody");
     if(list && list.length>1){
         list[1].innerHTML = "<p><strong>"+list[0].innerHTML+"</strong></p>"+list[1].innerHTML
     }
@@ -88,9 +87,18 @@ filters.push(function(){
         list[0].parentNode.removeChild(list[0]);
     }catch(e){}
     
+    var block = document.querySelector(".articlebody .articlelead");
+    if(block){
+        try{
+            var elm = document.createElement("p");
+            elm.innerHTML = "<strong>"+block.innerHTML+"</strong>";
+            
+            block.parentNode.insertBefore(elm, block);
+            block.parentNode.removeChild(block);
+        }catch(E){}
+    }
+    
     var block = document.querySelector(".articlebody .paidcontent");
-
-    console.log(block);
     if(block){
         try{
             block.parentNode.removeChild(block);
