@@ -82,9 +82,13 @@ function __PHANTOM_RESPONSE(){
             
             // remove hidden elements from the DOM
             if(window.getComputedStyle(element).getPropertyValue("display") == "hidden"){
+                console.log("Hidden found");
                 // add only top level hidden elements, not the children
                 if(window.getComputedStyle(element.parentNode).getPropertyValue("display") != "hidden"){
+                    console.log("No hidden parent");
                     removeList.push(element);
+                }else{
+                    console.log("Hidden parent");
                 }
                 break;
             }
