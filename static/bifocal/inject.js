@@ -115,7 +115,9 @@ function __PHANTOM_RESPONSE(){
         }
         
         elements = element.querySelectorAll("div, p, ul, li, h1, h2, h3, h4, h5");
+        console.log("TOTAL: "+elements.length)
         for(var i=0, len = elements.length; i<len; i++){
+            console.log(elements[i].tagName)
             elements[i].innerHTML = (elements[i].innerHTML || "").trim();
         }
     }
