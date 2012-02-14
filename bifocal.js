@@ -105,6 +105,27 @@ filters.push(function(){
         }catch(E){}
     }
     
+    var block = document.querySelector(".content .art-authors");
+    if(block){
+        try{
+            block.parentNode.removeChild(block);
+        }catch(E){}
+    }
+    
+    var block = document.querySelector(".content .artImage");
+    if(block){
+        try{
+            block.parentNode.removeChild(block);
+        }catch(E){}
+    }
+    
+    var block = document.querySelector(".content .articleSource");
+    if(block){
+        try{
+            block.parentNode.removeChild(block);
+        }catch(E){}
+    }
+    
     var block = document.querySelector(".articlebody_holder .articleimage");
     if(block){
         try{
@@ -218,16 +239,15 @@ filters.push(function(){
 
 });
 
-// remove hidden
+// remove media
 filters.push(function(){
-    var block = document.querySelector("#content #content-main .post h5");
+    var block = document.querySelectorAll("video, embed, audio, object");
 
-    if(block){
+    for(var i = block.length-1; i>=0; i--){
         try{
-            block.parentNode.removeChild(block);
+            block[i].parentNode.removeChild(block[i]);
         }catch(E){}
     }
-
 });
 
 function Log(msg){
