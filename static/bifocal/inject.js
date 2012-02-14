@@ -35,113 +35,99 @@ function __PHANTOM_RESPONSE(){
     if(!warning){
         
         if(article){
-            
-            //remove script tags
-            var elements = article.getElementsByTagName("script");
-            for(var i=elements.length-1; i>=0; i--){
-                try{
-                    elements[i].parentNode.removeChild(elements[i]);
-                }catch(E){}
-            }
-            
-            //remove style tags
-            var elements = article.getElementsByTagName("style");
-            for(var i=elements.length-1; i>=0; i--){
-                try{
-                    elements[i].parentNode.removeChild(elements[i]);
-                }catch(E){}
-            }
-            
-            //remove meta tags
-            var elements = article.getElementsByTagName("meta");
-            for(var i=elements.length-1; i>=0; i--){
-                try{
-                    elements[i].parentNode.removeChild(elements[i]);
-                }catch(E){}
-            }
-            
-            // sanitize nodes by removing all attributes except for href
-            var elements = article.getElementsByTagName("*"),
-                attr;
-                
-            for(var i=0, len = elements.length; i<len; i++){
-                for(j = elements[i].attributes.length-1; j>=0; j--){
-                    attr = (elements[i].attributes.item(j).nodeName || "").toString();
-                    if(attr){
-                        if(elements[i].tagName == "A" && attr.toLowerCase() == "href"){
-                            if((elements[i].href || "").toString().trim().match(/^(javascript|about)\s*\:/)){
-                                elements[i].href = "#";
-                            }
-                        }else if(elements[i].tagName == "IMG"){
-                            if(attr.toLowerCase() == "alt"){
-                                // keep
-                            }else if(attr.toLowerCase() == "src"){
-                                if((elements[i].src || "").toString().trim().match(/^(javascript|about)\s*\:/)){
-                                    elements[i].removeAttribute(attr);
-                                };
-                            }else{
-                                elements[i].removeAttribute(attr);
-                            }
-                        }else{
-                            elements[i].removeAttribute(attr);
-                        }
-                    }
-                }
-            }
-        
+            sanitizeDOM(article);
             response.article = article.innerHTML.trim();
         }
         
         if(title){
-            
-            //remove script tags
-            var elements = title.getElementsByTagName("script");
-            for(var i=elements.length-1; i>=0; i--){
-                try{
-                    elements[i].parentNode.removeChild(elements[i]);
-                }catch(E){}
-            }
-            
-            //remove style tags
-            var elements = title.getElementsByTagName("style");
-            for(var i=elements.length-1; i>=0; i--){
-                try{
-                    elements[i].parentNode.removeChild(elements[i]);
-                }catch(E){}
-            }
-            
-            //remove meta tags
-            var elements = title.getElementsByTagName("meta");
-            for(var i=elements.length-1; i>=0; i--){
-                try{
-                    elements[i].parentNode.removeChild(elements[i]);
-                }catch(E){}
-            }
-            
-            // sanitize nodes by removing all attributes except for href
-            var elements = title.getElementsByTagName("*"),
-                attr;
-                
-            for(var i=0, len = elements.length; i<len; i++){
-                for(j = elements[i].attributes.length-1; j>=0; j--){
-                    attr = (elements[i].attributes.item(j).nodeName || "").toString();
-                    if(attr){
-                        if(elements[i].tagName == "A" && attr.toLowerCase() == "href"){
-                            if((elements[i].href || "").toString().trim().match(/^(javascript|about)\s*\:/)){
-                                elements[i].href = "#";
-                            }
-                        }else{
-                            elements[i].removeAttribute(attr);
-                        }
-                    }
-                }
-            }
-            
+            sanitizeDOM(title);
             response.title = title.innerHTML.trim();
         }
         
         
     }
     console.log(JSON.stringify(response));
+    
+    function sanitizeDOM(element){
+        //remove script tags
+        var elements = element.getElementsByTagName("script");
+        for(var i=elements.length-1; i>=0; i--){
+            try{
+                elements[i].parentNode.removeChild(elements[i]);
+            }catch(E){}
+        }
+        
+        //remove style tags
+        var elements = element.getElementsByTagName("style");
+        for(var i=elements.length-1; i>=0; i--){
+            try{
+                elements[i].parentNode.removeChild(elements[i]);
+            }catch(E){}
+        }
+        
+        //remove meta tags
+        var elements = element.getElementsByTagName("meta");
+        for(var i=elements.length-1; i>=0; i--){
+            try{
+                elements[i].parentNode.removeChild(elements[i]);
+            }catch(E){}
+        }
+        
+        // sanitize nodes by removing all attributes except for href
+        var elements = element.getElementsByTagName("*"),
+            attr, href,
+            removeList = [];
+            
+        for(var i=0, len = elements.length; i<len; i++){
+            
+            // remove hidden elements from the DOM
+            if(window.getComputedStyle(element).getPropertyValue("display") == "hidden"){
+                // add only top level hidden elements, not the children
+                if(window.getComputedStyle(element.parentNode).getPropertyValue("display") != "hidden"){
+                    removeList.push(element);
+                }
+                break;
+            }
+            
+            for(j = elements[i].attributes.length-1; j>=0; j--){
+                attr = (elements[i].attributes.item(j).nodeName || "").toString();
+                if(attr){
+                    
+                    // lingid
+                    if(elements[i].tagName == "A" && attr.toLowerCase() == "href"){
+                        href = (elements[i].href || "").toString().trim();
+                        if(href.match(/^(javascript|about)\s*\:/)){
+                            elements[i].href = "#";
+                        }else if(href.match(/^https?\:\/\/[a-z\.\-]+\/teemalehed\//i)){
+                            // delfi teemalehed
+                            elements[i].removeAttribute(attr);
+                        }
+                    
+                    // pildid
+                    }else if(elements[i].tagName == "IMG"){
+                        if(attr.toLowerCase() == "alt"){
+                            // keep
+                        }else if(attr.toLowerCase() == "src"){
+                            if((elements[i].src || "").toString().trim().match(/^(javascript|about)\s*\:/)){
+                                elements[i].removeAttribute(attr);
+                            };
+                        }else{
+                            elements[i].removeAttribute(attr);
+                        }
+                    
+                    // eemalda vaikimisi
+                    }else{
+                        elements[i].removeAttribute(attr);
+                    }
+                }
+            }
+        }
+        
+        // remove hidden elements
+        for(var i = removeList.length - 1; i>=0; i--){
+            try{
+                removeList[i].parentNode.removeChild(removeList[i]);
+            }catch(E){}
+        }
+    }
 }
-

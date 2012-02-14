@@ -103,6 +103,18 @@ filters.push(function(){
 
 });
 
+// ap3
+filters.push(function(){
+    var block = document.querySelector(".publicationpublished");
+
+    if(block){
+        try{
+            fs.parentNode.removeChild(fs);
+        }catch(E){}
+    }
+
+});
+
 function Log(msg){
     log.push(msg);
     console.log(msg);
