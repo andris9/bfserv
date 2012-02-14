@@ -109,7 +109,7 @@ filters.push(function(){
 
     if(block){
         try{
-            fs.parentNode.removeChild(fs);
+            block.parentNode.removeChild(block);
         }catch(E){}
     }
 
@@ -117,25 +117,34 @@ filters.push(function(){
 
 // õhtuleht
 filters.push(function(){
-    var block = document.querySelector("#article-info.cfx");
+    var block;
+    
+    block = document.querySelector("#article-info.cfx");
     if(block){
         try{
-            fs.parentNode.removeChild(fs);
+            block.parentNode.removeChild(block);
         }catch(E){}
     }
 
 
-    var block = document.querySelector(".gallery-action-bar");
+    block = document.querySelector(".gallery-action-bar");
     if(block){
         try{
-            fs.parentNode.removeChild(fs);
+            block.parentNode.removeChild(block);
         }catch(E){}
     }
     
-    var block = document.querySelector("#gallery-slideshow-container");
+    block = document.querySelector("#gallery-slideshow-container");
     if(block){
         try{
-            fs.parentNode.removeChild(fs);
+            block.parentNode.removeChild(block);
+        }catch(E){}
+    }
+    
+    block = document.querySelector(".banner.cfx");
+    if(block){
+        try{
+            block.parentNode.removeChild(block);
         }catch(E){}
     }
 });
