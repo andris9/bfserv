@@ -80,21 +80,6 @@ function __PHANTOM_RESPONSE(){
             
         for(var i=0, len = elements.length; i<len; i++){
             
-            // remove hidden elements from the DOM
-            console.log(element.tagName+", "+window.getComputedStyle(element).getPropertyValue("display"))
-            
-            if(window.getComputedStyle(element).getPropertyValue("display") == "none"){
-                console.log("Hidden found");
-                // add only top level hidden elements, not the children
-                if(window.getComputedStyle(element.parentNode).getPropertyValue("display") != "none"){
-                    console.log("No hidden parent");
-                    removeList.push(element);
-                }else{
-                    console.log("Hidden parent");
-                }
-                break;
-            }
-            
             for(j = elements[i].attributes.length-1; j>=0; j--){
                 attr = (elements[i].attributes.item(j).nodeName || "").toString();
                 if(attr){

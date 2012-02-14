@@ -115,6 +115,31 @@ filters.push(function(){
 
 });
 
+// õhtuleht
+filters.push(function(){
+    var block = document.querySelector("#article-info.cfx");
+    if(block){
+        try{
+            fs.parentNode.removeChild(fs);
+        }catch(E){}
+    }
+
+
+    var block = document.querySelector(".gallery-action-bar");
+    if(block){
+        try{
+            fs.parentNode.removeChild(fs);
+        }catch(E){}
+    }
+    
+    var block = document.querySelector("#gallery-slideshow-container");
+    if(block){
+        try{
+            fs.parentNode.removeChild(fs);
+        }catch(E){}
+    }
+});
+
 function Log(msg){
     log.push(msg);
     console.log(msg);
