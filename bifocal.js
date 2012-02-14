@@ -62,7 +62,7 @@ page.open(phantom.args[0], function (status) {
         Log("Page opened");
 
         for(var i=0, len=filters.length; i<len; i++){
-            Log("Aplying filter #"+(i+1));
+            Log("Applying filter #"+(i+1));
             page.evaluate(filters[i]);
         }
         
@@ -79,175 +79,184 @@ page.open(phantom.args[0], function (status) {
 
 // delfi
 filters.push(function(){
-    var list = document.querySelectorAll("font.articleBody");
-    if(list && list.length>1){
-        list[1].innerHTML = "<p><strong>"+list[0].innerHTML+"</strong></p>"+list[1].innerHTML
-    }
     try{
-        list[0].parentNode.removeChild(list[0]);
-    }catch(e){}
-    
-    var block = document.querySelector(".articlebody .articlelead");
-    if(block){
+     
+        var list = document.querySelectorAll("font.articleBody");
+        if(list && list.length>1){
+            list[1].innerHTML = "<p><strong>"+list[0].innerHTML+"</strong></p>"+list[1].innerHTML
+        }
         try{
-            var elm = document.createElement("p");
-            elm.innerHTML = "<strong>"+block.innerHTML+"</strong>";
-            
-            block.parentNode.insertBefore(elm, block);
-            block.parentNode.removeChild(block);
-        }catch(E){}
-    }
+            list[0].parentNode.removeChild(list[0]);
+        }catch(e){}
+        
+        var block = document.querySelector(".articlebody .articlelead");
+        if(block){
+            try{
+                var elm = document.createElement("p");
+                elm.innerHTML = "<strong>"+block.innerHTML+"</strong>";
+                
+                block.parentNode.insertBefore(elm, block);
+                block.parentNode.removeChild(block);
+            }catch(E){}
+        }
+        
+        var block = document.querySelector(".articlebody .paidcontent");
+        if(block){
+            try{
+                block.parentNode.removeChild(block);
+            }catch(E){}
+        }
+        
+        var block = document.querySelector(".content .art-authors");
+        if(block){
+            try{
+                block.parentNode.removeChild(block);
+            }catch(E){}
+        }
+        
+        var block = document.querySelector(".content .artImage");
+        if(block){
+            try{
+                block.parentNode.removeChild(block);
+            }catch(E){}
+        }
+        
+        var block = document.querySelector(".content .articleSource");
+        if(block){
+            try{
+                block.parentNode.removeChild(block);
+            }catch(E){}
+        }
+        
+        var block = document.querySelector(".articlebody_holder .articleimage");
+        if(block){
+            try{
+                block.parentNode.removeChild(block);
+            }catch(E){}
+        }
     
-    var block = document.querySelector(".articlebody .paidcontent");
-    if(block){
-        try{
-            block.parentNode.removeChild(block);
-        }catch(E){}
-    }
-    
-    var block = document.querySelector(".content .art-authors");
-    if(block){
-        try{
-            block.parentNode.removeChild(block);
-        }catch(E){}
-    }
-    
-    var block = document.querySelector(".content .artImage");
-    if(block){
-        try{
-            block.parentNode.removeChild(block);
-        }catch(E){}
-    }
-    
-    var block = document.querySelector(".content .articleSource");
-    if(block){
-        try{
-            block.parentNode.removeChild(block);
-        }catch(E){}
-    }
-    
-    var block = document.querySelector(".articlebody_holder .articleimage");
-    if(block){
-        try{
-            block.parentNode.removeChild(block);
-        }catch(E){}
-    }
+    }catch(E){console.log("ERR1: "+E.message)}
 });
 
 // postimees
 filters.push(function(){
-    var sissejuhatus = document.querySelector("#artikli_sissejuhatus"),
-        tykid, text;
+    try{
+     
+        var sissejuhatus = document.querySelector("#artikli_sissejuhatus"),
+            tykid, text;
+        
+        if(sissejuhatus){
+            
+            var p = sissejuhatus.querySelectorAll("p");
+            for(var i=0, len = p.length; i<len; i++){
+                p[i].innerHTML = "<strong>"+p[i].innerHTML+"</strong>";
+            }
+            
+            text = sissejuhatus.innerHTML || "";
+            
+            try{
+                sissejuhatus.parentNode.removeChild(sissejuhatus);
+            }catch(e){
+                return;
+            }
+            
+            if((tykid =  document.querySelector(".artikkel_tykid"))){
+                tykid.innerHTML = text + tykid.innerHTML;
+            }
+        }
     
-    if(sissejuhatus){
-        
-        var p = sissejuhatus.querySelectorAll("p");
-        for(var i=0, len = p.length; i<len; i++){
-            p[i].innerHTML = "<strong>"+p[i].innerHTML+"</strong>";
-        }
-        
-        text = sissejuhatus.innerHTML || "";
-        
-        try{
-            sissejuhatus.parentNode.removeChild(sissejuhatus);
-        }catch(e){
-            return;
-        }
-        
-        if((tykid =  document.querySelector(".artikkel_tykid"))){
-            tykid.innerHTML = text + tykid.innerHTML;
-        }
-    }
-    
+    }catch(E){console.log("ERR2: "+E.message)}
 });
 
 // err
 filters.push(function(){
-    var block = document.querySelector(".space .biggerfont"),
-        fs = block && block.firstChild;
-
-    if(fs && fs.nodeName == "#text"){
-        if((fs.nodeValue || "").toString().trim().match(/^[0-9\. :]+$/)){
-            try{
-                fs.parentNode.removeChild(fs);
-            }catch(E){}
+    try{
+     
+        var block = document.querySelector(".space .biggerfont"),
+            fs = block && block.firstChild;
+    
+        if(fs && fs.nodeName == "#text"){
+            if((fs.nodeValue || "").toString().trim().match(/^[0-9\. :]+$/)){
+                try{
+                    fs.parentNode.removeChild(fs);
+                }catch(E){}
+            }
         }
-    }
 
+    }catch(E){console.log("ERR3: "+E.message)}
 });
 
 // ap3
 filters.push(function(){
-    var block = document.querySelector(".publicationpublished");
+    try{
+     
+        var block = document.querySelector(".publicationpublished");
+    
+        if(block){
+            try{
+                block.parentNode.removeChild(block);
+            }catch(E){}
+        }
 
-    if(block){
-        try{
-            block.parentNode.removeChild(block);
-        }catch(E){}
-    }
-
+    }catch(E){console.log("ERR4: "+E.message)}
 });
 
 // õhtuleht
 filters.push(function(){
-    var block;
-    
-    if((block = document.querySelector("#article-info.cfx"))){
-        try{
-            block.parentNode.removeChild(block);
-        }catch(E){}
-    }
-
-    if((block = document.querySelector("#article-content #gallery"))){
-        try{
-            block.parentNode.removeChild(block);
-        }catch(E){}
-    }
-
-    /*
-    if((block = document.querySelector("#article-content .gallery-action-bar"))){
-        try{
-            block.parentNode.removeChild(block);
-        }catch(E){}
-    }
-    
-    if((block = document.querySelector("#article-content #gallery-slideshow-container"))){
-        try{
-            block.parentNode.removeChild(block);
-        }catch(E){}
-    }
-    */
-    
-    if((block = document.querySelectorAll("#article-content .banner"))){
-        for(var i=block.length-1; i>=0; i--){
+    try{
+     
+        var block;
+        
+        if((block = document.querySelector("#article-info.cfx"))){
             try{
-                block[i].parentNode.removeChild(block[i]);
+                block.parentNode.removeChild(block);
             }catch(E){}
         }
-    }
+    
+        if((block = document.querySelector("#article-content #gallery"))){
+            try{
+                block.parentNode.removeChild(block);
+            }catch(E){}
+        }
+    
+        if((block = document.querySelectorAll("#article-content .banner"))){
+            for(var i=block.length-1; i>=0; i--){
+                try{
+                    block[i].parentNode.removeChild(block[i]);
+                }catch(E){}
+            }
+        }
+    
+    }catch(E){console.log("ERR5: "+E.message)}
 });
 
 // memokraat
 filters.push(function(){
-    var block = document.querySelector("#content #content-main .post h5");
-
-    if(block){
-        try{
-            block.parentNode.removeChild(block);
-        }catch(E){}
-    }
-
+    try{
+     
+        var block = document.querySelector("#content #content-main .post h5");
+    
+        if(block){
+            try{
+                block.parentNode.removeChild(block);
+            }catch(E){}
+        }
+    
+    }catch(E){console.log("ERR6: "+E.message)}
 });
 
 // remove media
 filters.push(function(){
-    var block = document.querySelectorAll("video, embed, audio, object");
-
-    for(var i = block.length-1; i>=0; i--){
-        try{
-            block[i].parentNode.removeChild(block[i]);
-        }catch(E){}
-    }
+    try{
+     
+        var block = document.querySelectorAll("video, embed, audio, object");
+    
+        for(var i = block.length-1; i>=0; i--){
+            try{
+                block[i].parentNode.removeChild(block[i]);
+            }catch(E){}
+        }
+    }catch(E){console.log("ERR7: "+E.message)}
 });
 
 function Log(msg){
