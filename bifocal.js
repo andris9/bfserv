@@ -104,6 +104,13 @@ filters.push(function(){
             block.parentNode.removeChild(block);
         }catch(E){}
     }
+    
+    var block = document.querySelector(".articlebody_holder .articleimage");
+    if(block){
+        try{
+            block.parentNode.removeChild(block);
+        }catch(E){}
+    }
 });
 
 // postimees
@@ -170,7 +177,13 @@ filters.push(function(){
         }catch(E){}
     }
 
+    if((block = document.querySelector("#article-content #gallery"))){
+        try{
+            block.parentNode.removeChild(block);
+        }catch(E){}
+    }
 
+    /*
     if((block = document.querySelector("#article-content .gallery-action-bar"))){
         try{
             block.parentNode.removeChild(block);
@@ -182,6 +195,7 @@ filters.push(function(){
             block.parentNode.removeChild(block);
         }catch(E){}
     }
+    */
     
     if((block = document.querySelectorAll("#article-content .banner"))){
         for(var i=block.length-1; i>=0; i--){
@@ -193,6 +207,18 @@ filters.push(function(){
 });
 
 // memokraat
+filters.push(function(){
+    var block = document.querySelector("#content #content-main .post h5");
+
+    if(block){
+        try{
+            block.parentNode.removeChild(block);
+        }catch(E){}
+    }
+
+});
+
+// remove hidden
 filters.push(function(){
     var block = document.querySelector("#content #content-main .post h5");
 
