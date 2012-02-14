@@ -81,6 +81,7 @@ function __PHANTOM_RESPONSE(){
         for(var i=0, len = elements.length; i<len; i++){
             
             // remove hidden elements from the DOM
+            console.log(element.tagName+", "+window.getComputedStyle(element).getPropertyValue("display"))
             if(window.getComputedStyle(element).getPropertyValue("display") == "hidden"){
                 console.log("Hidden found");
                 // add only top level hidden elements, not the children
