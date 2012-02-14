@@ -118,6 +118,7 @@ function __PHANTOM_RESPONSE(){
         console.log("TOTAL: "+elements.length)
         for(var i=0, len = elements.length; i<len; i++){
             console.log(elements[i].tagName)
+            console.log(elements[i].innerHTML.trim())
             elements[i].innerHTML = (elements[i].innerHTML || "").trim();
         }
     }
