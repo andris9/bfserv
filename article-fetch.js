@@ -5,7 +5,7 @@ var pathlib = require("path"),
 module.exports = articleFetch;
 
 var tempDir = "F:",
-	phscript = pathlib.join("C:", "APP", "bfserv", "bifocal.js");
+	phscript = pathlib.join(__dirname, "bifocal.js");
 
 function articleFetch(url, callback){
 	var fname = genFName(),
