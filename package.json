@@ -8,7 +8,6 @@
             "email":"andris@node.ee"
         }
     ],
-    "main" : "./index",
     "dependencies": {
         "node-static": "*",
         "node-gearman":"*"

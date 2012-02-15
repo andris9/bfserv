@@ -1,1 +1,1 @@
-console.log("OKIDOKI!");
+console.log("Test script injected successfully");

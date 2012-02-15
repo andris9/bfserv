@@ -34,9 +34,10 @@ function articleFetch(url, callback){
             var article = {};
             try{
                 article = JSON.parse(decodeURIComponent(data.toString("utf-8").trim()));
+                article.article = sanitizeHTML((article && article.article || "").toString().trim());
             }catch(E){}
             
-            callback(null, sanitizeHTML((article && article.article || "").toString().trim()));
+            callback(null, JSON.stringify(article));
         });
     });
 

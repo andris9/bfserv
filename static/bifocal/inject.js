@@ -2,7 +2,7 @@ console.log("Injected Main");
 
 (function() {
     try{
-        console.log("FINAL URL: "+window.location.href);
+        console.log("FINAL URL: " + window.location.href);
         
         console.log("Run Main script");
         
@@ -30,7 +30,7 @@ console.log("Injected Main");
         bifocalPrintCss.type = 'text/css';
         document.getElementsByTagName('head')[0].appendChild(bifocalPrintCss);
     }catch(E){
-        console.log("MAINERR: "+E.message);
+        console.log("MAIN ERR: "+E.message);
     }
 })();
 
@@ -40,7 +40,7 @@ function __PHANTOM_RESPONSE(){
     var article = document.querySelector('#bifocal-content .page'),
         title =  document.querySelector('#readInner h1'),
         warning =  document.querySelector('#bifocal-warning'),
-        response = {bifocal:true};
+        response = {bifocal:true, url: window.location.href};
         
     if(!warning){
         
