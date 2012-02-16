@@ -13,7 +13,7 @@ function articleFetch(url, callback){
 	
 	console.log("Cmd: "+"phantomjs "+phscript+" "+url+" "+fpath);
 	
-	var cmd = spawn("phantomjs", {env: {'DISPLAY': ':0'}}, [phscript, url, fpath]);
+	var cmd = spawn("phantomjs", [phscript, url, fpath], {env: {'DISPLAY': ':0'}});
 	
 	cmd.stdout.on('data', function (data) {
         console.log('stdout: ' + (data || "").toString().trim());
