@@ -1,10 +1,10 @@
-var static = require("node-static"),
+var staticServer = require("node-static"),
 	pathlib = require("path"),
 	Gearman = require("node-gearman"),
 	articleFetch = require("./article-fetch");
 
 // STATIC SERVER
-var file = new(static.Server)(pathlib.join(__dirname, 'static'));
+var file = new(staticServer.Server)(pathlib.join(__dirname, 'static'));
 
 require('http').createServer(function (request, response) {
     request.addListener('end', function () {
@@ -15,7 +15,7 @@ require('http').createServer(function (request, response) {
 var counter = 0;
 
 // GEARMAN WORKER
-var gearman = new Gearman("pangalink.net");
+var gearman = new Gearman("localhost");
 gearman.registerWorker("article", function(payload, worker){
 	console.log("Received JOB #"+(++counter));
     if(!payload){
