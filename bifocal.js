@@ -19,10 +19,10 @@ page.onConsoleMessage = function(msg) {
     try{
         var data = JSON.parse(msg);
         if(data.bifocal){
-            Log("Saving output to: " + (phantom.args[1] || "out.txt"));
+            Log("Saving output to: " + (phantom.args[1] || "out.txt"));
             data.log = log;
             try{
-                fs.write(phantom.args[1] || "out.txt", encodeURIComponent(JSON.stringify(data)), "w");
+                fs.write(phantom.args[1] || "out.txt", encodeURIComponent(JSON.stringify(data)), "w");
                 console.log("Success");
             }catch(E){console.log(E.message)};
             phantom.exit();
@@ -161,7 +161,7 @@ filters.push(function(){
                 p[i].innerHTML = "<strong>"+p[i].innerHTML+"</strong>";
             }
             
-            text = sissejuhatus.innerHTML || "";
+            text = sissejuhatus.innerHTML || "";
             
             try{
                 sissejuhatus.parentNode.removeChild(sissejuhatus);
@@ -186,7 +186,7 @@ filters.push(function(){
             fs = block && block.firstChild;
     
         if(fs && fs.nodeName == "#text"){
-            if((fs.nodeValue || "").toString().trim().match(/^[0-9\. :]+$/)){
+            if((fs.nodeValue || "").toString().trim().match(/^[0-9\. :]+$/)){
                 try{
                     fs.parentNode.removeChild(fs);
                 }catch(E){}
@@ -268,7 +268,7 @@ filters.push(function(){
         
         if(sissejuhatus){
             
-            text = "<p>"+(sissejuhatus.innerHTML || "")+"</p>";
+            text = "<p>"+(sissejuhatus.innerHTML || "")+"</p>";
             
             try{
                 sissejuhatus.parentNode.removeChild(sissejuhatus);

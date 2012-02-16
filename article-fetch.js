@@ -16,11 +16,11 @@ function articleFetch(url, callback){
 	var cmd = spawn("phantomjs", [phscript, url, fpath]);
 	
 	cmd.stdout.on('data', function (data) {
-        console.log('stdout: ' + (data || "").toString().trim());
+        console.log('stdout: ' + (data || "").toString().trim());
     });
     
     cmd.stderr.on('data', function (data) {
-        console.log('stderr: ' + (data || "").toString().trim());
+        console.log('stderr: ' + (data || "").toString().trim());
     });
     
     cmd.on('exit', function (code) {
@@ -34,7 +34,7 @@ function articleFetch(url, callback){
             var article = {};
             try{
                 article = JSON.parse(decodeURIComponent(data.toString("utf-8").trim()));
-                article.article = sanitizeHTML((article && article.article || "").toString().trim());
+                article.article = sanitizeHTML((article && article.article || "").toString().trim());
             }catch(E){}
             
             callback(null, JSON.stringify(article));

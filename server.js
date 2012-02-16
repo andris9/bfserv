@@ -22,7 +22,7 @@ gearman.registerWorker("article", function(payload, worker){
         worker.error();
         return;
     }
-    var url = (payload || "").toString().trim();
+    var url = (payload || "").toString().trim();
     console.log("URL: "+url);
     articleFetch(url, function(err, article){
     	if(err){
