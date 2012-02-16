@@ -81,10 +81,10 @@ page.open(phantom.args[0], function (status) {
 // delfi
 filters.push(function(){
     try{
-        Log("Filter 1");
+        console.log("Filter 1");
         
         var list = document.querySelectorAll("font.articleBody");
-        if(list && list.length>1){
+        if(list && list.length > 1){
             list[1].innerHTML = "<p><strong>"+list[0].innerHTML+"</strong></p>"+list[1].innerHTML
         }
         try{
@@ -137,13 +137,13 @@ filters.push(function(){
             }catch(E){}
         }
     
-    }catch(E){Log("ERR1: "+E.message)}
+    }catch(E){console.log("ERR1: "+E.message)}
 });
 
 // postimees
 filters.push(function(){
     try{
-       Log("Filter 2");
+       console.log("Filter 2");
      
         var sissejuhatus = document.querySelector("#artikli_sissejuhatus"),
             tykid, text;
@@ -168,13 +168,13 @@ filters.push(function(){
             }
         }
     
-    }catch(E){Log("ERR2: "+E.message)}
+    }catch(E){console.log("ERR2: "+E.message)}
 });
 
 // err
 filters.push(function(){
     try{
-        Log("Filter 3");
+        console.log("Filter 3");
         
         var block = document.querySelector(".space .biggerfont"),
             fs = block && block.firstChild;
@@ -186,14 +186,22 @@ filters.push(function(){
                 }catch(E){}
             }
         }
+        
+        var block = document.querySelector(".box .content .time");
+    
+        if(block){
+            try{
+                block.parentNode.removeChild(block);
+            }catch(E){}
+        }
 
-    }catch(E){Log("ERR3: "+E.message)}
+    }catch(E){console.log("ERR3: "+E.message)}
 });
 
 // ap3
 filters.push(function(){
     try{
-        Log("Filter 4");
+        console.log("Filter 4");
         
         var block = document.querySelector(".publicationpublished");
     
@@ -203,13 +211,13 @@ filters.push(function(){
             }catch(E){}
         }
 
-    }catch(E){Log("ERR4: "+E.message)}
+    }catch(E){console.log("ERR4: "+E.message)}
 });
 
 // õhtuleht
 filters.push(function(){
     try{
-        Log("Filter 5");
+        console.log("Filter 5");
      
         var block;
         
@@ -233,13 +241,13 @@ filters.push(function(){
             }
         }
     
-    }catch(E){Log("ERR5: "+E.message)}
+    }catch(E){console.log("ERR5: "+E.message)}
 });
 
 // memokraat
 filters.push(function(){
     try{
-        Log("Filter 6");
+        console.log("Filter 6");
      
         var block = document.querySelector("#content #content-main .post h5");
     
@@ -249,13 +257,13 @@ filters.push(function(){
             }catch(E){}
         }
     
-    }catch(E){Log("ERR6: "+E.message)}
+    }catch(E){console.log("ERR6: "+E.message)}
 });
 
 // kes-kus
 filters.push(function(){
     try{
-       Log("Filter 7");
+       console.log("Filter 7");
      
         var sissejuhatus = document.querySelector("td.koht h5"),
             tykid, text;
@@ -275,13 +283,13 @@ filters.push(function(){
             }
         }
     
-    }catch(E){Log("ERR7: "+E.message)}
+    }catch(E){console.log("ERR7: "+E.message)}
 });
 
 // õpetajate leht
 filters.push(function(){
     try{
-        Log("Filter 8");
+        console.log("Filter 8");
      
         var block = document.querySelector(".full_artikel .h1_link_a");
     
@@ -291,13 +299,21 @@ filters.push(function(){
             }catch(E){}
         }
     
-    }catch(E){Log("ERR8: "+E.message)}
+        var block = document.querySelector(".full_artikel .komment_link_a");
+    
+        if(block){
+            try{
+                block.parentNode.removeChild(block);
+            }catch(E){}
+        }
+    
+    }catch(E){console.log("ERR8: "+E.message)}
 });
 
 // remove media
 filters.push(function(){
     try{
-        Log("Filter 9");
+        console.log("Filter 9");
         
         var block = document.querySelectorAll("video, embed, audio, object");
     
@@ -306,7 +322,7 @@ filters.push(function(){
                 block[i].parentNode.removeChild(block[i]);
             }catch(E){}
         }
-    }catch(E){Log("ERR9: "+E.message)}
+    }catch(E){console.log("ERR9: "+E.message)}
 });
 
 function Log(msg){
