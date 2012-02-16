@@ -95,9 +95,16 @@ filters.push(function(){
         if(block){
             try{
                 var elm = document.createElement("p");
-                elm.innerHTML = "<strong>"+block.innerHTML+"</strong>";
+                elm.innerHTML = "<strong>"+(block.innerHTML || "").trim()+"</strong>";
                 
                 block.parentNode.insertBefore(elm, block);
+                block.parentNode.removeChild(block);
+            }catch(E){}
+        }
+        
+        var block = document.querySelector(".AB_banner");
+        if(block){
+            try{
                 block.parentNode.removeChild(block);
             }catch(E){}
         }
@@ -136,7 +143,27 @@ filters.push(function(){
                 block.parentNode.removeChild(block);
             }catch(E){}
         }
-    
+        
+        var block = document.querySelectorAll(".articlebody p, .articlebody div");
+        for(var i = block.length-1; i>=0; i--){
+            try{
+                if(!block[i].innerHTML.replace(/\&nbsp;|[\s\n\r\t]/gi, " ").trim() || (block[i].id || "").toString().match(/adocean/)){
+                    block[i].parentNode.removeChild(block[i]);
+                }
+            }catch(E){}
+        }
+        
+        var block = document.querySelector(".articlebody #ss_buttons");
+        if(block){
+            try{
+                block.parentNode.removeChild(block);
+            }catch(E){}
+        }
+        
+        // remove comments
+        var block = document.querySelector(".articlebody");
+        block.innerHTML = block.innerHTML.replace(/\r?\n|\r/g, "\u0000").replace(/<\!--.*?-->/g, "").replace(/\u0000/g,"\n").trim();
+        
     }catch(E){console.log("ERR1: "+E.message)}
 });
 
@@ -323,14 +350,17 @@ filters.push(function(){
     try{
         console.log("Filter 9");
         
-        var block = document.querySelectorAll("video, embed, audio, object");
+        var block = document.querySelectorAll("video, embed, audio, object, script");
     
         for(var i = block.length-1; i>=0; i--){
             try{
                 block[i].parentNode.removeChild(block[i]);
             }catch(E){}
         }
+
     }catch(E){console.log("ERR9: "+E.message)}
+    
+    //console.log(document.body.innerHTML);
 });
 
 function Log(msg){
