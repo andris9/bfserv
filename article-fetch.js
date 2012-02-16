@@ -4,7 +4,7 @@ var pathlib = require("path"),
 
 module.exports = articleFetch;
 
-var tempDir = "F:",
+var tempDir = "/mnt/ram",
 	phscript = pathlib.join(__dirname, "bifocal.js");
 
 function articleFetch(url, callback){
