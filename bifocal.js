@@ -23,32 +23,32 @@ page.onConsoleMessage = function(msg) {
             data.log = log;
             try{
                 fs.write(phantom.args[1] || "out.txt", encodeURIComponent(JSON.stringify(data)), "w");
-                console.log("Success");
-            }catch(E){console.log(E.message)};
+                Log("Success");
+            }catch(E){Log(E.message)};
             phantom.exit();
         }
     }catch(E){}
-    console.log(msg);
+    Log(msg);
 };
 
 page.onInitialized = function(status){
-    //console.log("initialized")
+    //Log("initialized")
 }
 
 page.onLoadFinished = function(status){
-    //console.log("Load status: "+status)
+    //Log("Load status: "+status)
 }
 
 page.onLoadFinished = function(){
-    //console.log("Load started")
+    //Log("Load started")
 }
 
 page.onResourceRequested = function(r){
-    //console.log(JSON.stringify(r));
+    //Log(JSON.stringify(r));
 }
 
 page.onResourceReceived = function(r){
-    //console.log(JSON.stringify(r));
+    //Log(JSON.stringify(r));
 }
 
 var filters = [];
@@ -81,7 +81,7 @@ page.open(phantom.args[0], function (status) {
 // delfi
 filters.push(function(){
     try{
-        console.log("Filter 1");
+        Log("Filter 1");
         
         var list = document.querySelectorAll("font.articleBody");
         if(list && list.length>1){
@@ -137,13 +137,13 @@ filters.push(function(){
             }catch(E){}
         }
     
-    }catch(E){console.log("ERR1: "+E.message)}
+    }catch(E){Log("ERR1: "+E.message)}
 });
 
 // postimees
 filters.push(function(){
     try{
-       console.log("Filter 2");
+       Log("Filter 2");
      
         var sissejuhatus = document.querySelector("#artikli_sissejuhatus"),
             tykid, text;
@@ -168,13 +168,13 @@ filters.push(function(){
             }
         }
     
-    }catch(E){console.log("ERR2: "+E.message)}
+    }catch(E){Log("ERR2: "+E.message)}
 });
 
 // err
 filters.push(function(){
     try{
-        console.log("Filter 3");
+        Log("Filter 3");
         
         var block = document.querySelector(".space .biggerfont"),
             fs = block && block.firstChild;
@@ -187,13 +187,13 @@ filters.push(function(){
             }
         }
 
-    }catch(E){console.log("ERR3: "+E.message)}
+    }catch(E){Log("ERR3: "+E.message)}
 });
 
 // ap3
 filters.push(function(){
     try{
-        console.log("Filter 4");
+        Log("Filter 4");
         
         var block = document.querySelector(".publicationpublished");
     
@@ -203,13 +203,13 @@ filters.push(function(){
             }catch(E){}
         }
 
-    }catch(E){console.log("ERR4: "+E.message)}
+    }catch(E){Log("ERR4: "+E.message)}
 });
 
 // õhtuleht
 filters.push(function(){
     try{
-        console.log("Filter 5");
+        Log("Filter 5");
      
         var block;
         
@@ -233,13 +233,13 @@ filters.push(function(){
             }
         }
     
-    }catch(E){console.log("ERR5: "+E.message)}
+    }catch(E){Log("ERR5: "+E.message)}
 });
 
 // memokraat
 filters.push(function(){
     try{
-        console.log("Filter 6");
+        Log("Filter 6");
      
         var block = document.querySelector("#content #content-main .post h5");
     
@@ -249,13 +249,13 @@ filters.push(function(){
             }catch(E){}
         }
     
-    }catch(E){console.log("ERR6: "+E.message)}
+    }catch(E){Log("ERR6: "+E.message)}
 });
 
 // kes-kus
 filters.push(function(){
     try{
-       console.log("Filter 7");
+       Log("Filter 7");
      
         var sissejuhatus = document.querySelector("td.koht h5"),
             tykid, text;
@@ -275,13 +275,13 @@ filters.push(function(){
             }
         }
     
-    }catch(E){console.log("ERR7: "+E.message)}
+    }catch(E){Log("ERR7: "+E.message)}
 });
 
 // õpetajate leht
 filters.push(function(){
     try{
-        console.log("Filter 8");
+        Log("Filter 8");
      
         var block = document.querySelector(".full_artikel .h1_link_a");
     
@@ -291,13 +291,13 @@ filters.push(function(){
             }catch(E){}
         }
     
-    }catch(E){console.log("ERR8: "+E.message)}
+    }catch(E){Log("ERR8: "+E.message)}
 });
 
 // remove media
 filters.push(function(){
     try{
-        console.log("Filter 9");
+        Log("Filter 9");
         
         var block = document.querySelectorAll("video, embed, audio, object");
     
@@ -306,7 +306,7 @@ filters.push(function(){
                 block[i].parentNode.removeChild(block[i]);
             }catch(E){}
         }
-    }catch(E){console.log("ERR9: "+E.message)}
+    }catch(E){Log("ERR9: "+E.message)}
 });
 
 function Log(msg){
