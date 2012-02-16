@@ -91,7 +91,7 @@ filters.push(function(){
             list[0].parentNode.removeChild(list[0]);
         }catch(e){}
         
-        var block = document.querySelector(".articlebody .articlelead");
+        var block = document.querySelector(".articlebody span.articlelead");
         if(block){
             try{
                 var elm = document.createElement("p");
@@ -250,6 +250,14 @@ filters.push(function(){
         console.log("Filter 6");
      
         var block = document.querySelector("#content #content-main .post h5");
+    
+        if(block){
+            try{
+                block.parentNode.removeChild(block);
+            }catch(E){}
+        }
+        
+        var block = document.querySelector(".sharedaddy");
     
         if(block){
             try{
