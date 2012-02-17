@@ -26,6 +26,43 @@ gearman.registerWorker("article", function(payload, worker){
     console.log("URL: "+url);
     articleFetch(url, function(err, article){
     	if(err){
+    	    // try one more time in a 1s delay
+    	    setTimeout(function(){
+    	        articleFetch(url, function(err, article){
+                    if(err){
+                        
+                        // try mode
+                        setTimeout(function(){
+                            articleFetch(url, function(err, article){
+                                if(err){
+                                    // try one more time in a 10s delay
+                                    setTimeout(function(){
+                                        articleFetch(url, function(err, article){
+                                            if(err){
+                                                console.log("ERROR: "+err.message);
+                                                worker.error();
+                                            }else{
+                                                console.log("SUCCESS");
+                                                worker.end(article);
+                                            }
+                                        });
+                                    }, 10000);
+                                    console.log("ERROR: "+err.message);
+                                    worker.error();
+                                }else{
+                                    console.log("SUCCESS");
+                                    worker.end(article);
+                                }
+                            });
+                        }, 5000);
+
+
+                    }else{
+                        console.log("SUCCESS");
+                        worker.end(article);
+                    }
+                });
+    	    }, 1000);
     		console.log("ERROR: "+err.message);
     		worker.error();
     	}else{

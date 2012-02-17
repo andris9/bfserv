@@ -162,7 +162,9 @@ filters.push(function(){
         
         // remove comments
         var block = document.querySelector(".articlebody");
-        block.innerHTML = block.innerHTML.replace(/\r?\n|\r/g, "\u0000").replace(/<\!--.*?-->/g, "").replace(/\u0000/g,"\n").trim();
+        if(block){
+            block.innerHTML = block.innerHTML.replace(/\r?\n|\r/g, "\u0000").replace(/<\!--.*?-->/g, "").replace(/\u0000/g,"\n").trim();
+        }
         
     }catch(E){console.log("ERR1: "+E.message)}
 });
