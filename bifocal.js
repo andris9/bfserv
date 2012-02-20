@@ -197,6 +197,13 @@ filters.push(function(){
             }
         }
     
+        var block = document.getElementById("lisade_plokk");
+        if(block){
+            try{
+                block.parentNode.removeChild(block);
+            }catch(E){}
+        }
+    
     }catch(E){console.log("ERR2: "+E.message)}
 });
 
