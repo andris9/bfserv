@@ -59,6 +59,30 @@ function __PHANTOM_RESPONSE(){
     console.log(JSON.stringify(response));
     
     function sanitizeDOM(element){
+        
+        /*
+        // should replace bold spans with strongs.... but does not :S
+        var elements = Array.prototype.slice.call(element.querySelectorAll("span")),
+            attr, href, style, fontWeight, elm;
+        
+        for(var i = elements.length - 1; i>=0; i--){
+            if(elements[i].tagName == "SPAN"){
+                style = window.getComputedStyle(elements[i]);
+                
+                fontWeight = (style.getPropertyValue("font-weight")).toString().toLowerCase();
+                if(fontWeight == "bold" || fontWeight == "700"){
+                    elm = document.createElement("strong");
+                    elm.innerHTML = elements[i].innerHTML;
+                    try{
+                        elements[i].parentNode.insertBefore(elm, elements[i]);
+                        elements[i].parentNode.removeChild(elements[i]);
+                        elements[i] = elm;
+                    }catch(E){}
+                }
+            }
+        }
+        */
+        
         //remove script tags
         var elements = element.getElementsByTagName("script");
         for(var i=elements.length-1; i>=0; i--){
@@ -84,7 +108,7 @@ function __PHANTOM_RESPONSE(){
         }
         
         // sanitize nodes by removing all attributes except for href
-        var elements = element.querySelectorAll("*"),
+        var elements = Array.prototype.slice.call(element.querySelectorAll("*")),
             attr, href,
             removeList = [];
             
@@ -128,7 +152,5 @@ function __PHANTOM_RESPONSE(){
                 }
             }
         }
-        
-        
     }
 }

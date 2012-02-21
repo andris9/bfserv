@@ -174,6 +174,13 @@ filters.push(function(){
     try{
        console.log("Filter 2");
      
+        var block = document.querySelector("#lisade_peidetud_andmed");
+        try{
+            block.parentNode.removeChild(block);
+        }catch(e){
+            return;
+        }
+     
         var sissejuhatus = document.querySelector("#artikli_sissejuhatus"),
             tykid, text;
         
@@ -195,13 +202,6 @@ filters.push(function(){
             if((tykid =  document.querySelector(".artikkel_tykid"))){
                 tykid.innerHTML = text + tykid.innerHTML;
             }
-        }
-    
-        var block = document.getElementById("lisade_plokk");
-        if(block){
-            try{
-                block.parentNode.removeChild(block);
-            }catch(E){}
         }
     
     }catch(E){console.log("ERR2: "+E.message)}
